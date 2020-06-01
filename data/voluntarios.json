@@ -1,0 +1,18 @@
+[
+    {
+      "key": 1,
+      "nome": "Joana Maria ",
+      "apelido": "Maguengue ",
+      "email": "jomaria@gmail.com",
+      "senha": "$2a$10$FWkO6SVUMvEKrlinVgOuXOjkJbUyvZMficj5/zDdpoIZIZtjfj3UO",
+      "tipoConta":0
+    },
+    {
+        "key": 2,
+        "nome": "Gildo Gamboa ",
+        "apelido": "Mussuril ",
+        "email": "ivo@gmail.com",
+        "senha": "$2a$10$FWkO6SVUMvEKrlinVgOuXOjkJbUyvZMficj5/zDdpoIZIZtjfj3UO",
+        "tipoConta":0
+      }
+]

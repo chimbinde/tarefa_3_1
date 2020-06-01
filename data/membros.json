@@ -1,0 +1,20 @@
+[
+    {
+      "key": 1,
+      "nome": "Vivian Carlos ",
+      "apelido": "Maguengue ",
+      "email": "vivinha@gmail.com",
+      "anoInicio": "2015",
+      "senha": "$2a$10$FWkO6SVUMvEKrlinVgOuXOjkJbUyvZMficj5/zDdpoIZIZtjfj3UO",
+      "tipoConta":1
+    },
+    {
+        "key": 2,
+        "nome": "Feliciano Januario",
+        "apelido": "Ildo ",
+        "email": "ildoa@gmail.com",
+        "anoInicio": "2020",
+        "senha": "$2a$10$FWkO6SVUMvEKrlinVgOuXOjkJbUyvZMficj5/zDdpoIZIZtjfj3UO",
+        "tipoConta":1
+      }
+]

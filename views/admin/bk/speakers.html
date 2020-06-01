@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,19 +11,25 @@
 
     <title>WebConference Admin - Oradores</title>
 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-     <link href="/css/admin/sb-admin.css" rel="stylesheet">
+     <!-- Custom styles for this template-->
+     <link href="sb-admin.css" rel="stylesheet">
     
+    <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+
+   
 
   </head>
 
   <body id="page-top">
--->
+
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="/admin/dashboard">WebConference Admin</a>
+      <a class="navbar-brand mr-1" href="dashboard.html">WebConference Admin</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -37,35 +42,23 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">   
+      <ul class="sidebar navbar-nav">      
         <li class="nav-item">
-          <a class="nav-link" href="/admin">
-            <i class="fas fa-fw fa-home"></i>
-            <span>Dashboard</span></a>
-        </li>   
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/participants">
+          <a class="nav-link" href="participants.html">
               <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Participantes</span></a>
         </li>
         
         <li class="nav-item active">
-          <a class="nav-link" href="/admin/speakers">
+          <a class="nav-link" href="speakers.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Oradores</span></a>
         </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/voluntarios">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Voluntarios</span>
-        </a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="/admin/membros">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Membros</span>
-        </a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="sponsors.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Sponsors</span></a>
+        </li>
       </ul>
 
       <div id="content-wrapper">
@@ -126,8 +119,7 @@
             <div id="divSpeakers" class="container">
                 <!-- Table -->
                 <div class="table-responsive">
-                    <table id="tblSpeakers" class="table table-sm">   
-                       {{{part}}}         
+                    <table id="tblSpeakers" class="table table-sm">            
                     </table>
                 </div>
             </div>
@@ -173,10 +165,9 @@
 
 
     <!-- Custom scripts for all pages-->
-    <script src="/js/admin/speakers.js"></script>
+    <script src="speakers.js"></script>
 
-<!--
+
   </body>
 
 </html>
--->

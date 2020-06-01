@@ -31,11 +31,15 @@
       <i class="fas fa-bars"></i>
     </button>
 
+
+
+
     <ul class="navbar-nav ml-auto">
       <li>
         <a id="logout" class="navbar-brand mr-auto" href="#">Logout</a>
       </li>
     </ul>
+
 
   </nav>
 
@@ -48,7 +52,7 @@
             <i class="fas fa-fw fa-home"></i>
             <span>Dashboard</span></a>
         </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/admin/participants">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Participantes</span>
@@ -61,13 +65,13 @@
           <span>Oradores</span>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="/admin/voluntarios">
           <i class="fas fa-fw fa-user"></i>
           <span>Voluntarios</span>
         </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link" href="/admin/membros">
           <i class="fas fa-fw fa-table"></i>
           <span>Membros</span>
@@ -80,18 +84,18 @@
       <div class="container-fluid">
 
         <div class="jumbotron">
-          <h1 class="display-3">Participantes</h1>
+          <h1 class="display-3">Voluntarios</h1>
           <p class="lead">Gestão inscritos na WebConference</p>
           <hr class="my-2">
 
 
-          <!--################## PARTICIPANTES ###################-->
-          <div id="divParticipants" class="container">
+          <!--################## Voluntarios ###################-->
+          <div id="divVoluntarios" class="container">
             <!-- Table -->
             <div class="table-responsive">
-              <table id="tblParticipants" class="table table-sm">
+              <table id="tblVoluntarios" class="table table-sm">
 
-               {{{part}}}
+               {{{dado}}}
 
               </table>
             </div>
