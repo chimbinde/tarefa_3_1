@@ -23,7 +23,11 @@ class Voluntario{
                     <td>`+obj[index].key+`</td>
                     <td>`+obj[index].nome+`</td>
                     <td>`+obj[index].apelido+`</td>              
-                    <td>`+obj[index].email+`</td>              
+                    <td>`+obj[index].email+`</td>
+                    <td>
+                        <i class='fas fa-trash remove'></i>
+                        <i class='fas fa-edit remove'></i>
+                    </td>               
                 </tr>`;
         }
         return html;

@@ -24,7 +24,11 @@ class Membro{
                     <td>`+obj[index].nome+`</td>
                     <td>`+obj[index].apelido+`</td> 
                     <td>`+obj[index].anoInicio+`</td>             
-                    <td>`+obj[index].email+`</td>              
+                    <td>`+obj[index].email+`</td> 
+                    <td>
+                        <a href="/admin/membros/del/`+obj[index].key+`" style="color:black"><i class='fas fa-trash remove'></i></a>
+                        <i class='fas fa-edit remove'></i>
+                    </td>             
                 </tr>`;
         }
         return html;
@@ -32,11 +36,13 @@ class Membro{
     findId(id){
         let obj=this.getAll();
         for (let index = 0; index < obj.length; index++) {
-            if(obj[index].key==id) return obj[index];   
+            console.log(obj[index].key+"-"+id)
+            if(obj[index].key==id) return obj[index]; 
+
         }
-        return 0;
+        return -1;
     } 
-    /*
+    
     delete(id){
         var fs = require('fs');
         let obj =  this.getAll();
@@ -46,10 +52,11 @@ class Membro{
             if(item.key!=id) obj1.push(item);
         });
         var data =JSON.stringify(obj1,null,2);
-        let u=fs.writeFileSync('data/db.json', data);
+        let u=fs.writeFileSync('data/membros.json', data);
         return 1;
 
     }
+    /*
     editar(id,categoria,slug){
         let obj=this.getAll();
         let editado=0;

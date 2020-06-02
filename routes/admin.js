@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const dados = require('./../model/Data'); 
+const bcrypt = require("bcryptjs");
 //const {eAdmin} = require("../helpers/eAdmin");
 
 router.get('/',(req,res)=>{
@@ -12,12 +13,13 @@ router.get('/',(req,res)=>{
     const post = require('./../model/Voluntario');
     let info = `
         <thead >
-            <tr><th class='w-100 text-center bg-warning' colspan='4'>Lista de Voluntarios</th></tr>
+            <tr><th class='w-100 text-center bg-warning' colspan='5'>Lista de Voluntarios</th></tr>
             <tr class='bg-info'>
                 <th class='w-2'>#</th>
                 <th class='w-50'>Nome</th>
                 <th class='w-38'>Apelido</th>              
-                <th class='w-10'>Email</th>              
+                <th class='w-10'>Email</th>  
+                <th class='w-10'>Ações</th>            
             </tr> 
             </thead><tbody> `+ post.getVoluntariosHtml()+ ` </tbody> 
     `;
@@ -29,13 +31,14 @@ router.get('/membros',(req,res)=>{
    
     let info = `
         <thead >
-            <tr><th class='w-100 text-center bg-warning' colspan='5'>Lista de Voluntarios</th></tr>
+            <tr><th class='w-100 text-center bg-warning' colspan='6'>Lista de Voluntarios</th></tr>
             <tr class='bg-info'>
                 <th class='w-2'>#</th>
                 <th class='w-50'>Nome</th>
                 <th class='w-38'>Apelido</th>              
                 <th class='w-10'>Email</th>
-                <th class='w-10'>AnoInicio</th>               
+                <th class='w-10'>AnoInicio</th>
+                <th class='w-10'>Ações</th>
             </tr> 
             </thead><tbody> `+ post.getMembrosHtml()+ ` </tbody> 
     `; 
@@ -44,6 +47,107 @@ router.get('/membros',(req,res)=>{
 
 
 });
+
+router.post('/membros/criar',(req,res)=>{
+    let nome = req.body.nome;
+    let apelido = req.body.apelido;
+    let email = req.body.email;
+    let anoInicio = req.body.anoInicio;
+    let password = req.body.password;
+    let confPassword = req.body.confPassword;
+
+  //  console.log(nome);
+    let erros=[];
+    if(nome=="" || typeof nome==undefined || nome==null){
+        erros.push({texto:"nome invalido.."});
+    }
+    if(apelido=="" || typeof apelido==undefined || apelido==null){
+        erros.push({texto:"apelido invalido.."});
+    }
+
+    if(!email || typeof email==undefined || email==null){
+        erros.push({texto:"email invalido.."});
+    }
+    if(!anoInicio || typeof anoInicio==undefined || anoInicio==null){
+        erros.push({texto:"ano invalido.."});
+    }
+    if(!password || typeof password==undefined || password==null){
+        erros.push({texto:"password invalida.."});
+    }
+    if(!confPassword || typeof confPassword==undefined || confPassword==null){
+        erros.push({texto:"conf password invalida.."});
+    }
+    if(confPassword !== password){
+        erros.push({texto:"palavras diferentes."});
+    }
+    let senha = password;
+    let tipoConta = 1;
+  
+    if(erros.length>0){
+        alert("Dados com problemas");
+       // return;
+        res.render("admin/membros",{erros:erros});
+      //  console.log("@"+erros.length);
+    }else {
+ 
+        bcrypt.genSalt(10,(erro,salt)=>{
+            bcrypt.hash(senha,salt,(erro,hash)=>{
+                if(erro){
+                    req.flash("error_msg","erro ao salvar");
+                    req.redirect("/admin/membros");
+                }
+                senha= hash; 
+                //console.log(hash);
+               // post.save(nome, email, senha, admin);
+                const post = require('./../model/Membro');
+
+               // console.log(nome+'-'+apelido+'-'+ email+'-'+ senha+'-'+tipoConta+'-'+anoInicio);
+                post.save(nome,apelido, email, senha, tipoConta,anoInicio);
+                req.flash("success_msg","Inserido com sucesso..");
+                res.redirect("/admin/membros");
+            });
+    
+        }); 
+
+        //const post = require('./../model/Membro');
+        //post.save(nome,apelido, email, senha, tipoConta,anoInicio);
+       // req.flash("success_msg","Categoria criada com sucesso");
+        //res.redirect('/admin/categorias');
+    }  
+  // console.log("good");
+  // res.send(erros);
+});
+router.get('/membros/del/:id',(req,res)=>{
+   // console.log("ok ok ok"+req.params.id);
+    const post = require('./../model/Membro');
+    let id=req.params.id;
+    console.log(">>"+id+">>")
+    if(post.findId(id)!=-1) {
+        
+        post.delete(id);
+        req.flash("success_msg","Eliminado com sucesso..");
+       //console.log("aqui bro..@"+id);
+    }  
+    else {
+        req.flash("error_msg","Nao localizou o elemento");
+       // console.log("aqui bro..@@"+id);
+    }
+    let info = `
+        <thead >
+            <tr><th class='w-100 text-center bg-warning' colspan='6'>Lista de Voluntarios</th></tr>
+            <tr class='bg-info'>
+                <th class='w-2'>#</th>
+                <th class='w-50'>Nome</th>
+                <th class='w-38'>Apelido</th>              
+                <th class='w-10'>Email</th>
+                <th class='w-10'>AnoInicio</th>
+                <th class='w-10'>Ações</th>
+            </tr> 
+            </thead><tbody> `+ post.getMembrosHtml()+ ` </tbody> 
+    `; 
+    res.render("admin/membros",{dado:info});
+});
+
  router.get('/speakers',(req,res)=>{
     let part = `
     <thead >
