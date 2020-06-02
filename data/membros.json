@@ -16,5 +16,14 @@
     "anoInicio": "2019",
     "senha": "$2a$10$eSdMAu.pHx2g7D2c/Gis2eqmTfDrVTZvdfKiQFTrI3ShF2hNg1TUi",
     "tipoConta": 1
+  },
+  {
+    "key": 4,
+    "nome": "sadsfa",
+    "apelido": "gerg",
+    "email": "elizabeth001@gmail.com",
+    "anoInicio": "undefined",
+    "senha": "$2a$10$eqKB.FDzFw2FomZZ4Kdgc.Q93AdPIFUZNPO4K7YxHgpl1swm5Obd2",
+    "tipoConta": 0
   }
 ]

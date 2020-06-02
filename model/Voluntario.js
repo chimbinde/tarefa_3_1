@@ -15,6 +15,19 @@ class Voluntario{
         }
         return -1;   
     } 
+    delete(id){
+        var fs = require('fs');
+        let obj =  this.getAll();
+
+        let obj1=[];
+        obj.forEach(item => {
+            if(item.key!=id) obj1.push(item);
+        });
+        var data =JSON.stringify(obj1,null,2);
+        let u=fs.writeFileSync('data/voluntarios.json', data);
+        return 1;
+
+    }
     getVoluntariosHtml(){
         let obj=this.getAll();
         let html="";
@@ -25,7 +38,7 @@ class Voluntario{
                     <td>`+obj[index].apelido+`</td>              
                     <td>`+obj[index].email+`</td>
                     <td>
-                        <i class='fas fa-trash remove'></i>
+                        <a href="/admin/voluntarios/del/`+obj[index].key+`" style="color:black"><i class='fas fa-trash remove'></i></a>
                         <i class='fas fa-edit remove'></i>
                     </td>               
                 </tr>`;
@@ -39,59 +52,25 @@ class Voluntario{
         }
         return 0;
     } 
-    /*
-    delete(id){
-        var fs = require('fs');
-        let obj =  this.getAll();
+   save(nome,apelido, email, senha, tipoConta){
 
-        let obj1=[];
-        obj.forEach(item => {
-            if(item.key!=id) obj1.push(item);
-        });
-        var data =JSON.stringify(obj1,null,2);
-        let u=fs.writeFileSync('data/db.json', data);
-        return 1;
-
-    }
-    editar(id,categoria,slug){
-        let obj=this.getAll();
-        let editado=0;
-        for (let index = 0; index < obj.length; index++) {
-          //  console.log(obj[index].key+'#'+id);
-            if(obj[index].key ==id){
-                obj[index].categoria =categoria; 
-                obj[index].slug =slug; 
-                editado=1;
-            }  
-        }
-    //    console.log(obj);
-        var json_1 =JSON.stringify(obj,null,2);
-        var fs = require('fs');
-        fs.writeFile('data/db.json',json_1,function(){
-            console.log('Inserido com sucesso..');
-        }); 
-        return 1;
-    }
-    */
-    save(nome,apelido, email, senha, tipoConta){
-
-        let obj=this.getAll();
-        let key =obj.length-1;
-        if(key<0) 
-            key =0; 
-        else 
-            key = obj[key].key+1;
-        //console.log(key);
-        var json_ ='{"key":'+key+',"nome":"'+nome+'","apelido":"'+apelido+'","email":"'+email+'","senha":"'+senha+'", "tipoConta":'+tipoConta+'}';
-        let elem = JSON.parse(json_);
-        obj.push(elem);
-       // console.log(obj);
-        var json_1 =JSON.stringify(obj,null,2);
-        var fs = require('fs');
-        fs.writeFile('data/dbuser.json',json_1,function(){
-            console.log('Inserido com sucesso..');
-        });
-    }
+    let obj=this.getAll();
+    let key =obj.length-1;
+    if(key<0) 
+        key =0; 
+    else 
+        key = obj[key].key+1;
+    //console.log(key);
+    var json_ ='{"key":'+key+',"nome":"'+nome+'","apelido":"'+apelido+'","email":"'+email+'" ,"senha":"'+senha+'", "tipoConta":'+tipoConta+'}';
+    let elem = JSON.parse(json_);
+    obj.push(elem);
+   // console.log(obj);
+    var json_1 =JSON.stringify(obj,null,2);
+    var fs = require('fs');
+    fs.writeFile('data/voluntarios.json',json_1,function(){
+        console.log('Inserido com sucesso..');
+    });
+}
 
 }
 const voluntario= new  Voluntario();
